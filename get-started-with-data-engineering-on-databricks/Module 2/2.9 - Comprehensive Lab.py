@@ -30,8 +30,8 @@
 # TODO
 
 # Change the following command to verify that a cluster is running
-FILL_IN = True
-print(f"{actual})
+actual = True
+print(f"{actual}")
 
 # COMMAND ----------
 
@@ -48,7 +48,7 @@ assert actual == True, "You need to check the cluster"
 # MAGIC %sql
 # MAGIC -- TODO
 # MAGIC
-# MAGIC FILL_IN
+# MAGIC CREATE TABLE IF NOT EXISTS sample_data
 
 # COMMAND ----------
 
@@ -69,9 +69,7 @@ assert suite
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC -- TODO
-# MAGIC
-# MAGIC Follow the instructions in the notebook, "2.4 - Demo - Data Governance and Security," if you need to review how this is done.
+# MAGIC GRANT SELECT ON TABLE sample_data to `venkatesh_jagannathan@epam.com`
 
 # COMMAND ----------
 
@@ -92,10 +90,10 @@ assert  not result.isEmpty(), "GRANT was not performed correctly. Try again."
 # MAGIC %sql
 # MAGIC -- TODO
 # MAGIC
-# MAGIC COPY INTO FILL_IN
-# MAGIC   FROM 'FILL_IN'
-# MAGIC   FILEFORMAT = FILL_IN
-# MAGIC   FORMAT_OPTIONS ('FILL_IN')
+# MAGIC COPY INTO sample_data
+# MAGIC   FROM '/databricks-datasets/retail-org/promotions/promotions.csv'
+# MAGIC   FILEFORMAT = CSV
+# MAGIC   FORMAT_OPTIONS ('inferSchema' = 'true', 'header' = 'true')
 # MAGIC   COPY_OPTIONS ('mergeSchema' = 'true')
 
 # COMMAND ----------
@@ -147,6 +145,7 @@ DA.validate_job_v1_config()
 
 # TODO
 # Run the job you configured above
+DA.Start_Job()
 
 # COMMAND ----------
 
